@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import LandingPage from './pages/LandingPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <h1 className='text-red-800 bg-orange-100'>hi!</h1>
-    </>
-  )
+    // دیگر نیازی به مدیریت تم در اینجا نیست
+    <div className="bg-background-light dark:bg-background-dark font-sans transition-colors duration-300">
+      <LandingPage />
+    </div>
+  );
 }
 
-export default App
+export default App;
