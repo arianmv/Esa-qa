@@ -1,10 +1,13 @@
 // src/App.tsx
+
 import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
-    // دیگر نیازی به مدیریت تم در اینجا نیست
-    <div className="bg-background-light dark:bg-background-dark font-sans transition-colors duration-300">
+    // اینجا جادوی اصلی اتفاق می‌افتد
+    // به صورت پیش‌فرض از رنگ‌های light استفاده می‌کند
+    // و وقتی کلاس .dark فعال شود، از رنگ‌های dark استفاده می‌کند
+    <div className="bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark font-sans transition-colors duration-300">
       <LandingPage />
     </div>
   );
