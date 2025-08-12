@@ -1,25 +1,41 @@
 // src/pages/LandingPage.tsx
 
 import React from 'react';
+import { useState } from 'react'; // ایمپورت کردن useState
 import GlassCard from '../components/GlassCard';
 import { Header } from '../components/Header';
 import { Button } from '../components/Button';
+import InfoModal from '../components/InfoModal'; // ایمپورت کردن پاپ‌آپ
+import { Info } from 'lucide-react'; // ایمپورت کردن آیکون "i"
+import Footer from '../components/Footer'; // ایمپورت کردن فوتر
 
 const LandingPage: React.FC = () => {
+      // ۱. استیت برای کنترل باز یا بسته بودن پاپ‌آپ
+  const [isInfoModalOpen, setInfoModalOpen] = useState(false);
   return (
     // به جای عکس، از کلاس‌های گرادیان و انیمیشن استفاده می‌کنیم
     <div 
       className="
-        relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden
+        relative min-h-screen w-full flex flex-col items-center justify-center p-4 overflow-hidden
         bg-gradient-to-br from-sky-500 via-blue-700 to-blue-900
         dark:from-blue-800 dark:via-blue-900 dark:to-gray-900
-        animated-gradient
+        animated-gradient pt-32
       "
     >
       <Header />
 
       <main className="relative z-10 text-center">
-        <GlassCard className="animate-float">
+        <GlassCard className="animate-float relative">
+
+                      {/* ۲. دکمه آیکون اطلاعات */}
+          <button 
+            onClick={() => setInfoModalOpen(true)}
+            className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
+            aria-label="اطلاعات بیشتر"
+          >
+            <Info size={24} />
+          </button>
+
           {/* اینجا در آینده لوگوی شما قرار می‌گیرد */}
           <div className="mb-6">
              <span className="inline-block p-4 bg-white/20 rounded-2xl border border-white/30">
@@ -41,6 +57,14 @@ const LandingPage: React.FC = () => {
           </Button>
         </GlassCard>
       </main>
+
+      <Footer/> {/* افزودن فوتر در اینجا */}
+
+            {/* ۳. رندر کردن کامپوننت پاپ‌آپ */}
+      <InfoModal isOpen={isInfoModalOpen} onClose={() => setInfoModalOpen(false)} />
+
+      {/* اینجا فوتر را اضافه خواهیم کرد */}
+
     </div>
   );
 };

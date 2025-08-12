@@ -3,12 +3,13 @@
 import React from 'react';
 import { cn } from '../utils/cn';
 
-interface GlassCardProps {
+// ۱. پراپ‌های جدید را به اینترفیس اضافه می‌کنیم
+interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({ children, className = '' }) => {
+const GlassCard: React.FC<GlassCardProps> = ({ children, className = '', ...props }) => {
   return (
     <div
       className={cn(
@@ -21,6 +22,8 @@ const GlassCard: React.FC<GlassCardProps> = ({ children, className = '' }) => {
         'transition-all duration-300',
         className
       )}
+            // ۲. تمام پراپ‌های اضافی (مثل onClick) را به div اصلی منتقل می‌کنیم
+      {...props} 
     >
       {children}
     </div>
