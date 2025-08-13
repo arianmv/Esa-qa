@@ -1,14 +1,20 @@
 // src/App.tsx
 
+import { useState } from 'react';
 import LandingPage from './pages/LandingPage';
+import QuestionnaireFlow from './pages/QuestionnaireFlow'; // ایمپورت کردن جریان جدید
 
 function App() {
+  // یک state برای کنترل نمایش صفحه لندینگ یا پرسشنامه
+  const [isQuizStarted, setQuizStarted] = useState(false);
+
   return (
-    // اینجا جادوی اصلی اتفاق می‌افتد
-    // به صورت پیش‌فرض از رنگ‌های light استفاده می‌کند
-    // و وقتی کلاس .dark فعال شود، از رنگ‌های dark استفاده می‌کند
     <div className="bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark font-sans transition-colors duration-300">
-      <LandingPage />
+      {isQuizStarted ? (
+        <QuestionnaireFlow />
+      ) : (
+        <LandingPage onStartQuiz={() => setQuizStarted(true)} />
+      )}
     </div>
   );
 }
